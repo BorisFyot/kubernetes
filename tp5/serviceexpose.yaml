@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2019-05-15T13:46:19Z"
+  labels:
+    app: nginx
+  name: nginxexpose2
+  namespace: deployment
+  resourceVersion: "219721"
+  selfLink: /api/v1/namespaces/deployment/services/nginxexpose2
+  uid: d17762ed-7717-11e9-9660-080027692f6d
+spec:
+  clusterIP: 10.111.5.59
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 32736
+    port: 9584
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

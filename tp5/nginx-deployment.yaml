@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment-5
+  namespace: deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: hello-go
+      namespace: deployment
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        env:
+        - name: PORT2
+          value: 8080
+        ports: 
+        - containerPort: 80
+        volumeMounts: 
+          - mountPath: /etc/nginx/
+            name: config-volume
+      - name: go
+        image: somafairey/tp3.5:hellogo
+        ports:
+          - containerPort: 8080
+      imagePullSecrets:
+      - name: tp3secretkey-gmtc572dt8 
+      volumes:
+        - name: config-volume
+          configMap:
+            name: config2
+

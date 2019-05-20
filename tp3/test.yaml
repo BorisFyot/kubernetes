@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  namespace: app-dev
+spec:
+  containers:
+  - name: nginx
+    image: somafairey/nginx:tp2
+    ports:
+     - containerPort: 80
+  - name: go
+    image: somafairey/go:tp2
+    ports:
+     - containerPort: 8080
+  imagePullSecrets:
+  - name: mysecret
